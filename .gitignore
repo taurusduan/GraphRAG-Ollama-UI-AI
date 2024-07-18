@@ -170,3 +170,5 @@ Miniconda3/
 ragtest/output/
 
 graphrag/__pycache__/
+
+*.bat
