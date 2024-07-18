@@ -22,6 +22,8 @@ import pyarrow.parquet as pq
 import pandas as pd
 import sys
 
+sys.stdout.reconfigure(encoding='utf-8')
+
 # Add the project root to the Python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_root)
@@ -94,7 +96,7 @@ def index_graph(progress=gr.Progress()):
     output_queue = queue.Queue()
     
     def run_command_with_output():
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8")
         for line in iter(process.stdout.readline, ''):
             output_queue.put(line)
         process.stdout.close()
@@ -758,74 +760,74 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
     with gr.Row(elem_id="main-container"):
         with gr.Column(scale=1, elem_id="left-column"):
             with gr.Tabs():
-                with gr.TabItem("Data Management"):
-                    with gr.Accordion("File Upload (.txt)", open=True):
-                        file_upload = gr.File(label="Upload .txt File", file_types=[".txt"])
-                        upload_btn = gr.Button("Upload File", variant="primary")
-                        upload_output = gr.Textbox(label="Upload Status", visible=False)
+                with gr.TabItem("数据管理"):
+                    with gr.Accordion("文件上传 (.txt)", open=True):
+                        file_upload = gr.File(label="上传 .txt 文件", file_types=[".txt"])
+                        upload_btn = gr.Button("上传文件", variant="primary")
+                        upload_output = gr.Textbox(label="上传状态", visible=False)
                     
-                    with gr.Accordion("File Management", open=True):
-                        file_list = gr.Dropdown(label="Select File", choices=[], interactive=True)
-                        refresh_btn = gr.Button("Refresh File List", variant="secondary")
+                    with gr.Accordion("文件管理", open=True):
+                        file_list = gr.Dropdown(label="选择文件", choices=[], interactive=True)
+                        refresh_btn = gr.Button("刷新文件列表", variant="secondary")
                         
-                        file_content = gr.TextArea(label="File Content", lines=10)
+                        file_content = gr.TextArea(label="文件内容", lines=10)
                         
                         with gr.Row():
-                            delete_btn = gr.Button("Delete Selected File", variant="stop")
-                            save_btn = gr.Button("Save Changes", variant="primary")
+                            delete_btn = gr.Button("删除选中文件", variant="stop")
+                            save_btn = gr.Button("保存更改", variant="primary")
                         
-                        operation_status = gr.Textbox(label="Operation Status", visible=False)
+                        operation_status = gr.Textbox(label="操作状态", visible=False)
                     
                     
-                with gr.Accordion("Indexing", open=False):
-                    index_btn = gr.Button("Run Indexing", variant="primary")
-                    index_output = gr.Textbox(label="Indexing Output", lines=10, visible=True)
-                    index_progress = gr.Textbox(label="Indexing Progress", visible=True)
+                with gr.Accordion("索引", open=False):
+                    index_btn = gr.Button("构建索引", variant="primary")
+                    index_output = gr.Textbox(label="索引输出", lines=10, visible=True)
+                    index_progress = gr.Textbox(label="构建索引进度", visible=True)
                 
-                with gr.TabItem("Indexing Outputs"):
-                    output_folder_list = gr.Dropdown(label="Select Output Folder", choices=[], interactive=True)
-                    refresh_folder_btn = gr.Button("Refresh Folder List", variant="secondary")
-                    initialize_folder_btn = gr.Button("Initialize Selected Folder", variant="primary")
-                    folder_content_list = gr.Dropdown(label="Select File or Directory", choices=[], interactive=True)
-                    file_info = gr.Textbox(label="File Information", interactive=False)
-                    output_content = gr.TextArea(label="File Content", lines=20, interactive=False)
-                    initialization_status = gr.Textbox(label="Initialization Status")
+                with gr.TabItem("索引输出"):
+                    output_folder_list = gr.Dropdown(label="选择输出文件夹", choices=[], interactive=True)
+                    refresh_folder_btn = gr.Button("刷新文件夹列表", variant="secondary")
+                    initialize_folder_btn = gr.Button("初始化选定文件夹", variant="primary")
+                    folder_content_list = gr.Dropdown(label="选择文件或目录", choices=[], interactive=True)
+                    file_info = gr.Textbox(label="文件信息", interactive=False)
+                    output_content = gr.TextArea(label="文件内容", lines=20, interactive=False)
+                    initialization_status = gr.Textbox(label="初始化状态")
                 
-                with gr.TabItem("Settings"):
+                with gr.TabItem("设置"):
                     settings = load_settings()
                     with gr.Group():
                         for key, value in settings.items():
                             create_setting_component(key, value)
 
             with gr.Group(elem_id="log-container"):
-                log_output = gr.TextArea(label="Logs", elem_id="log-output")
+                log_output = gr.TextArea(label="日志", elem_id="log-output")
 
         with gr.Column(scale=2, elem_id="right-column"):
             with gr.Group(elem_id="chat-container"):
-                chatbot = gr.Chatbot(label="Chat History", elem_id="chatbot")
+                chatbot = gr.Chatbot(label="聊天记录", elem_id="chatbot")
                 with gr.Row(elem_id="chat-input-row"):
-                    query_type = gr.Radio(["global", "local", "direct"], label="Query Type", value="global")
+                    query_type = gr.Radio(["global", "local", "direct"], label="查询类型", value="global")
                     with gr.Column(scale=1):
                         query_input = gr.Textbox(
-                            label="Query",
-                            placeholder="Enter your query here...",
+                            label="查询",
+                            placeholder="在这里输入你的查询...",
                             elem_id="query-input"
                         )
-                        query_btn = gr.Button("Send Query", variant="primary")
-                
-                with gr.Accordion("Model Parameters", open=False):
-                    system_message = gr.Textbox(label="System Message", value="You are a helpful assistant.", lines=2)
-                    temperature = gr.Slider(label="Temperature", minimum=0, maximum=1, value=0.7, step=0.1)
-                    max_tokens = gr.Slider(label="Max Tokens", minimum=1, maximum=4096, value=150, step=1)
-                    model = gr.Dropdown(label="Model", choices=[default_model] + fetch_ollama_models(), value=default_model)
-                    refresh_models_btn = gr.Button("Refresh Models", variant="secondary")
-                
+                        query_btn = gr.Button("发送查询", variant="primary")
+
+                with gr.Accordion("模型参数", open=False):
+                    system_message = gr.Textbox(label="系统设定", value="你是一个有帮助的助手。", lines=2)
+                    temperature = gr.Slider(label="温度", minimum=0, maximum=1, value=0.7, step=0.1)
+                    max_tokens = gr.Slider(label="最大token数", minimum=1, maximum=4096, value=150, step=1)
+                    model = gr.Dropdown(label="模型", choices=[default_model] + fetch_ollama_models(), value=default_model)
+                    refresh_models_btn = gr.Button("刷新模型", variant="secondary")
 
                 with gr.Group(elem_id="visualization-container"):
-                    vis_output = gr.Plot(label="Graph Visualization", elem_id="visualization-plot")
+                    vis_output = gr.Plot(label="图表可视化", elem_id="visualization-plot")
                     with gr.Row(elem_id="vis-controls-row"):
-                        vis_btn = gr.Button("Visualize Graph", variant="secondary")
-                    vis_status = gr.Textbox(label="Visualization Status", elem_id="vis-status", show_label=False)
+                        vis_btn = gr.Button("可视化图表", variant="secondary")
+                    vis_status = gr.Textbox(label="可视化状态", elem_id="vis-status", show_label=False)
+
 
     # Event handlers
     upload_btn.click(fn=upload_file, inputs=[file_upload], outputs=[upload_output, file_list, log_output])
@@ -922,4 +924,4 @@ demo = demo.queue()
 
 
 if __name__ == "__main__":
-    demo.launch(share=True, reload=False)
+    demo.launch(share=False)

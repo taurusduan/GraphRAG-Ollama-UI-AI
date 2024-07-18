@@ -1,3 +1,4 @@
+# app
 environs
 datashaper
 lancedb
@@ -24,3 +25,22 @@ plotly
 kaleido
 graphrag
 tomlkit
+
+# api
+fastapi
+uvicorn
+pandas
+tavily-python
+pydantic
+python-dotenv
+asyncio
+aiohttp
+scikit-learn
+seaborn
+spacy
+transformers
+
+# 我默认装的cu121的
+torch
+torchvision
+torchaudio
