@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 #### gradio webui
 
-ragtest\settings.yaml 完成相应配置（llm，embedding等）
+ragtest\settings.yaml 完成相应配置（llm，embedding等） 更多参考：[https://microsoft.github.io/graphrag/posts/config/json_yaml/](https://microsoft.github.io/graphrag/posts/config/json_yaml/)
 ragtest\.env 配置密钥
 
 运行gradio webui
