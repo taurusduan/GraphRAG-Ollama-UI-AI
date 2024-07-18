@@ -29,7 +29,7 @@ python app.py
 
 #### api
 
-config.json 完成配置（INPUT_RAG_DIR这个RAG完成后输出的路径下的artifacts，以及llm，embedding等）
+api_config.json 完成配置（INPUT_RAG_DIR这个RAG完成后输出的路径下的artifacts，以及llm，embedding等）
 
 运行api.py
 ```
