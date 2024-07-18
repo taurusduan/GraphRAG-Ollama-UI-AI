@@ -1,0 +1,264 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d5" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d4" for="edge" attr.name="description" attr.type="string" />
+  <key id="d3" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d2" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d1" for="node" attr.name="description" attr.type="string" />
+  <key id="d0" for="node" attr.name="type" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="&quot;&#20234;&#21345;&#27931;&#26031;&quot;/&quot;IKAROS&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"Ikaros is the main character from 'Fall from the Sky', also known as &#945; model, self-proclaimed as 'Entertainment Universal Angel', actually 'Strategic Universal Angel'. She is referred to as the 'Queen of the Air' by Sinapsis. The Sinapsis people are afraid of her powerful abilities and she is sealed off, later being freed by Daedalus which results in her landing on Earth where she meets and begins her story with Shinkai Naoto.")("entity"</data>
+      <data key="d2">7fb245fa51202323a83d901bfef9dbcf</data>
+    </node>
+    <node id="&quot;ICARUS&#65288;&#21345;&#32599;&#26031;&#65289;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"Icarus&#26159;&#24076;&#33098;&#31070;&#35805;&#20013;&#30340;&#35282;&#33394;&#65292;&#20195;&#36798;&#32599;&#26031;&#30340;&#20799;&#23376;&#65292;&#22312;&#19982;&#29238;&#20146;&#36867;&#31163;&#20811;&#37324;&#29305;&#23707;&#26102;&#22240;&#39134;&#24471;&#22826;&#39640;&#23548;&#33268;&#21452;&#32764;&#34701;&#21270;&#32780;&#20007;&#29983;&#12290;"</data>
+      <data key="d2">72d985bf8f6fd42f3d899a72ee233cb3</data>
+    </node>
+    <node id="&quot;&#22825;&#20351;&#32452;&#32455;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#22825;&#20351;&#32452;&#32455;"&#26159;&#25351;&#21487;&#33021;&#19982;&#35282;&#33394;&#30456;&#20851;&#30340;&#26576;&#31181;&#22242;&#20307;&#25110;&#26426;&#26500;&#65292;&#21487;&#33021;&#26159;&#20854;&#25152;&#23646;&#30340;&#32452;&#32455;&#25110;&#32773;&#32972;&#26223;&#35774;&#23450;&#20013;&#30340;&#31070;&#31192;&#21147;&#37327;&#12290;)||("entity"</data>
+      <data key="d2">bba58227eb8d4fae630ca9a0091a3120</data>
+    </node>
+    <node id="&quot;&#26234;&#26641;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">The entity "\u667a\u6811" is described in multiple ways that reflect its multifaceted nature. First, it acts as a medium for communication and reflection after reaching the peak of self-realization. In this context, it allows individuals to process their emotions with depth (deeply reflecting on their feelings), which results in an overall improvement in mental health.
+
+Next, "\u667a\u6811" is characterized as a voice in the world of digital expression and broadcasting, transcending language barriers through a universal medium. It connects people regardless of geographical or cultural differences by facilitating understanding across various dialects (Chinese dialect) along with features like quick transmission, loudness, and clarity. 
+
+The entity also offers an open space for self-expression and emotional release, where users can express themselves freely without the constraints imposed by traditional forms of communication. It serves as a platform that enables everyone to be heard, providing an avenue for individuals who might struggle in conventional settings.
+
+In essence, "\u667a\u6811" embodies various roles including a tool for self-reflection, a medium for global expression, and a source of emotional support for users worldwide.</data>
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c,c26f1d2d9beb7f001212da27ca449f0a,cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#33258;&#25105;&#20462;&#22797;&#33021;&#21147;&quot;">
+      <data key="d0">"ABILITY"</data>
+      <data key="d1">"&#22312;&#21463;&#21040;&#25915;&#20987;&#25110;&#25439;&#20260;&#21518;&#33021;&#22815;&#24555;&#36895;&#24674;&#22797;&#30340;&#33021;&#21147;&#12290;&#23588;&#20854;&#26159;&#36827;&#20837;&#31354;&#20043;&#22899;&#29579;&#27169;&#24335;&#20043;&#21518;&#65292;&#36825;&#31181;&#33021;&#21147;&#20250;&#26356;&#21152;&#24378;&#22823;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#31354;&#20043;&#22899;&#29579;&#27169;&#24335;&quot;">
+      <data key="d0">"MODE"</data>
+      <data key="d1">"\u7a7a\u4e4b\u5973\u738b\u6a21\u5f0f" represents a flexible and adaptable state or mode, capable of expressing individual preferences and actions effectively. Moreover, it can be a gentle yet powerful way of communication, often utilized for conveying complex ideas and concepts efficiently.</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57,cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#32784;&#21387;&#28508;&#28145;3000&#31859;&quot;">
+      <data key="d0">"CAPABILITY"</data>
+      <data key="d1">"&#22312;&#27700;&#19979;&#29615;&#22659;&#20013;&#30340;&#25215;&#21463;&#21387;&#21147;&#30340;&#33021;&#21147;&#12290;&#21487;&#20197;&#22312;3000&#31859;&#30340;&#28145;&#24230;&#19979;&#25345;&#32493;&#27963;&#21160;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#26080;&#27687;&#27668;&#21487;&#25345;&#32493;&#26102;&#38388;720&#23567;&#26102;&quot;">
+      <data key="d0">"DURATION"</data>
+      <data key="d1">"&#22312;&#27700;&#19979;&#27809;&#26377;&#31354;&#27668;&#30340;&#24773;&#20917;&#19979;&#21487;&#20197;&#25345;&#32493;&#27963;&#21160;&#30340;&#26102;&#38388;&#65292;&#38271;&#36798;720&#23567;&#26102;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#39134;&#34892;&#36895;&#24230;24&#39532;&#36203;&quot;">
+      <data key="d0">"SPEED"</data>
+      <data key="d1">"&#22312;&#31354;&#20013;&#30340;&#39134;&#34892;&#36895;&#24230;&#65292;&#30456;&#24403;&#20110;&#27599;&#23567;&#26102;&#32422;29401.92&#20844;&#37324;&#30340;&#39640;&#36895;&#24230;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#27704;&#20037;&#36861;&#23614;&#31354;&#23545;&#31354;&#23548;&#24377;&#65288;ARTEMIS&#65289;&quot;">
+      <data key="d0">"WEAPON"</data>
+      <data key="d1">"&#19968;&#31181;&#36861;&#36394;&#26102;&#38388;&#24310;&#38271;&#30340;&#21046;&#23548;&#36319;&#36394;&#23548;&#24377;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#32477;&#23545;&#38450;&#24481;&#22280;&#65288;AEGIS&#65289;&quot;">
+      <data key="d0">"SHIELD"</data>
+      <data key="d1">"&#33021;&#22815;&#25269;&#24481;&#38500;&#20102;&#38463;&#26031;&#29305;&#34174;&#20122;&#30340;&#36229;&#25391;&#21160;&#31890;&#23376;&#20809;&#21073;&#20043;&#22806;&#30340;&#25152;&#26377;&#24050;&#30693;&#25915;&#20987;&#30340;&#19968;&#31181;&#38450;&#24481;&#31995;&#32479;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#21487;&#21464;&#24335;&#32701;&#32764;&#31995;&#32479;&quot;">
+      <data key="d0">"EQUIPMENT"</data>
+      <data key="d1">"&#26159;&#21033;&#29992;&#27704;&#20037;&#36861;&#23614;&#31354;&#23545;&#31354;&#23548;&#24377;&#12289;&#32477;&#23545;&#38450;&#24481;&#22280;&#20197;&#21450;&#20044;&#25289;&#35834;&#26031;&#31995;&#32479;&#31561;&#35774;&#22791;&#30340;&#20851;&#38190;&#32452;&#20214;&#25110;&#24179;&#21488;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#26368;&#32456;&#20853;&#22120;&#38463;&#27874;&#32599;(APOLLON)&quot;">
+      <data key="d0">"WEAPON"</data>
+      <data key="d1">"&#20855;&#26377;&#26497;&#39640;&#30340;&#30772;&#22351;&#21147;&#21644;&#24191;&#27867;&#30340;&#29190;&#28856;&#33539;&#22260;&#65292;&#19968;&#20987;&#21487;&#20197;&#27585;&#28781;&#19968;&#20010;&#22269;&#23478;&#30340;&#36229;&#32423;&#27494;&#22120;&#12290;"."</data>
+      <data key="d2">cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#20044;&#25289;&#35834;&#26031;&#31995;&#32479;/&#22825;&#29579;&#26143;&#31995;&#32479;&#65288;URANUS SYSTEM&#65289;&quot;">
+      <data key="d0">"EQUIPMENT"</data>
+      <data key="d1">The entity "\u4e4c\u62c9\u8bfa\u65af\u7cfb\u7edf/\u5929\u738b\u661f\u7cfb\u7edf" or "URANUS SYSTEM" represents a highly advanced system of artificial intelligence, designed for versatile application and operation in a human environment. This entity is characterized by its exceptional performance capability across various sectors, primarily attributed to the sophisticated AI architecture that integrates human-like decision-making processes.
+
+The system exhibits an exceptionally high level of data processing capacity with unmatched efficiency and robustness, enabling it to handle complex tasks efficiently and effectively. It demonstrates adaptability in learning from diverse data patterns, thus optimizing its operational capabilities over time. The system is capable of autonomous decision-making, further enhancing its self-sufficiency and operational independence.
+
+The entity embodies the pinnacle of technology innovation, seamlessly integrating human intelligence with cutting-edge computational algorithms to achieve unparalleled results across different fields. Its design emphasizes efficiency and reliability, ensuring consistent performance in critical applications where precision and speed are paramount. This system is an embodiment of advanced technological prowess, designed to revolutionize industries through its innovative approach and superior execution capabilities.</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da,cee725195e38781bbfabddd44c69b8f8</data>
+    </node>
+    <node id="&quot;&#36229;&#39640;&#28909;&#20307;&#21387;&#32553;&#23545;&#33328;&#28846;&#8544;&#65288;HEPHAISTOS&#8544;&#65289;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#36825;&#26159;&#19968;&#27454;&#21160;&#30011;&#20013;&#30340;&#22825;&#29579;&#26143;&#31995;&#32479;&#20869;&#37096;&#27494;&#22120;&#25110;&#29420;&#31435;&#35013;&#22791;&#65292;&#29992;&#20110;&#39640;&#28909;&#20307;&#30340;&#21387;&#32553;&#23556;&#20987;&#65292;&#21487;&#33021;&#36866;&#29992;&#20110;&#33328;&#28846;&#20316;&#25112;&#12290;&#8220;Hephaistos&#8544;&#8221;&#36825;&#20010;&#21517;&#23383;&#21487;&#33021;&#26159;&#25351;&#19982;&#29076;&#28809;&#25110;&#38203;&#36896;&#30456;&#20851;&#30340;&#27494;&#22120;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#19975;&#33021;&#21345;&#29255;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#19975;&#33021;&#21345;&#29255;&#26159;&#19968;&#31181;&#35013;&#32622;&#65292;&#21487;&#20197;&#20174;&#35199;&#32435;&#26222;&#26031;&#33719;&#21462;&#36947;&#20855;&#26469;&#23454;&#29616;&#20154;&#30340;&#24895;&#26395;&#65292;&#36825;&#19982;&#20165;&#38500;&#19975;&#33021;&#22825;&#20351;&#22806;&#30340;&#20854;&#20182;&#20154;&#37117;&#21487;&#20197;&#20351;&#29992;&#30340;&#8220;&#35268;&#21017;&#8221;&#19981;&#21516;&#12290;&#8220;&#19975;&#33021;&#22825;&#20351;&#8221;&#20063;&#21487;&#20197;&#35768;&#24895;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#28504;&#22810;&#25289;&#65288;PANDORA&#65289;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#28504;&#22810;&#25289;&#26159;&#20195;&#36798;&#32599;&#26031;&#35013;&#36733;&#22312;&#31532;&#19968;&#20195;&#20154;&#36896;&#22825;&#20351;&#20869;&#30340;&#20869;&#32622;&#31995;&#32479;&#65292;&#28608;&#27963;&#21518;&#21487;&#20197;&#20351;&#20154;&#36896;&#22825;&#20351;&#36827;&#21270;&#12290;&#8220;Pandora&#8221;&#36825;&#20010;&#21517;&#23383;&#36890;&#24120;&#19982;&#20256;&#35828;&#20013;&#30340;&#30418;&#23376;&#30456;&#20851;&#32852;&#65292;&#26263;&#31034;&#20854;&#24378;&#22823;&#19988;&#20855;&#26377;&#28508;&#22312;&#21361;&#38505;&#25110;&#21147;&#37327;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#27704;&#20037;&#36861;&#23614;&#31354;&#23545;&#31354;&#23548;&#24377;&#8545;(ARTEMIS&#8545;)&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#36825;&#26159;&#20234;&#21345;&#27931;&#26031;&#36827;&#21270;&#30340;&#35013;&#22791;&#65292;&#26159;&#19968;&#31181;&#21319;&#32423;&#29256;&#30340;&#27704;&#20037;&#36861;&#23614;&#31354;&#23545;&#31354;&#23548;&#24377;&#65292;&#27599;&#21457;&#37117;&#36275;&#20197;&#25703;&#27585;&#19968;&#20010;&#26757;&#20848;&#31995;&#20154;&#36896;&#22825;&#20351;&#12290;&#23427;&#26159;&#29992;&#20110;&#31354;&#20013;&#23545;&#31354;&#25915;&#20987;&#30340;&#24378;&#22823;&#27494;&#22120;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#32477;&#23545;&#38450;&#24481;&#22280;&#8545;(AEGIS&#8545;)&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#20234;&#21345;&#27931;&#26031;&#36827;&#21270;&#30340;&#35013;&#22791;&#65292;&#25552;&#20379;&#20840;&#38754;&#30340;&#38450;&#24481;&#33021;&#21147;&#65292;&#24182;&#33021;&#22815;&#35745;&#31639;&#24182;&#21453;&#23556;&#25152;&#26377;&#31867;&#22411;&#30340;&#25915;&#20987;&#35823;&#24046;&#12290;&#8220;aegis&#8221;&#36825;&#20010;&#21517;&#23383;&#26469;&#28304;&#20110;&#24076;&#33098;&#31070;&#35805;&#20013;&#30340;&#30462;&#29260;&#65292;&#35937;&#24449;&#30528;&#20445;&#25252;&#21644;&#38450;&#24481;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#21452;&#37325;&#21487;&#21464;&#32764;&#31995;&#32479;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#36825;&#26159;&#20234;&#21345;&#27931;&#26031;&#36827;&#21270;&#21518;&#30340;&#35013;&#22791;&#65292;&#25551;&#36848;&#20026;&#21487;&#20197;&#23454;&#29616;&#26356;&#39640;&#25928;&#30340;&#39134;&#34892;&#25110;&#26426;&#21160;&#24615;&#33021;&#30340;&#31995;&#32479;&#12290;&#23427;&#20801;&#35768;&#20234;&#21345;&#27931;&#26031;&#36798;&#21040;&#21407;&#22987;&#29366;&#24577;&#19981;&#21487;&#27604;&#25311;&#30340;&#39640;&#24230;&#28789;&#27963;&#24615;&#21644;&#36866;&#24212;&#24615;&#12290;"</data>
+      <data key="d2">b03e514c29caaf80eb7a6bc73b9022da</data>
+    </node>
+    <node id="&quot;&#27185;&#20117;&#26234;&#26641;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"Sakai Genki is someone Ikaros likes. He has a good heart despite being flirtatious and cares for Ikaros, hoping she could lead a normal and free life."</data>
+      <data key="d2">ca1c9a863c7bf880287d91c879ebbec1</data>
+    </node>
+    <node id="&quot;&#20234;&#21345;&#27931;&#26031;&quot;">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"\"Ikaros\" represents an advanced piece of equipment or character that undergoes evolution. It could be either the title of this entity, or a specific identifier of some sort in its description; however, above it does not clarify which one it is. Essentially, \"Ikaros\" is a digital avatar known for achieving unparalleled performance in various tasks, after all, it serves as an embodiment of human wisdom and creativity.
+
+It's a single data point out of many that make up this entity, it's the result of technology's integration with creativity. This process involves processing input from diverse sources like input devices and visual sensors to determine the best course of action. It has the capability of simulating human decision-making processes and providing detailed explanations on demand.
+
+In essence, during its development stage, it went through several iterations involving input calibration and error correction for different types and sizes of inputs alongside the interpretation and understanding of diverse information."</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57,b203c6718019fd5d6680d9a327a05ec5,b5a5400f3dc2e61307e21338c4553d3c,c26f1d2d9beb7f001212da27ca449f0a,ca1c9a863c7bf880287d91c879ebbec1</data>
+    </node>
+    <node id="&quot;&#20195;&#36798;&#32599;&#26031;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"Daidalos" refers to the entity who manufactures or creates Ikaros.</data>
+      <data key="d2">ca1c9a863c7bf880287d91c879ebbec1</data>
+    </node>
+    <node id="&quot;&#39118;&#38899;&#26085;&#21644;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#39118;&#38899;&#26085;&#21644;&#26159;&#19968;&#20301;&#22806;&#35980;&#28165;&#31168;&#38739;&#20029;&#30340;&#20316;&#29289;&#36798;&#20154;&#65292;&#32463;&#24120;&#31181;&#29916;&#26524;&#34092;&#33756;&#65292;&#20048;&#20110;&#21521;&#21035;&#20154;&#20256;&#25480;&#31181;&#26893;&#30693;&#35782;&#12290;&#22905;&#26366;&#34987;&#20234;&#21345;&#27931;&#26031;&#35831;&#25945;&#36807;&#31181;&#26893;&#35199;&#29916;&#30340;&#26041;&#27861;&#12290;"</data>
+      <data key="d2">c26f1d2d9beb7f001212da27ca449f0a</data>
+    </node>
+    <node id="&quot;&#26970;&#21407;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#26970;&#21407;&#21548;&#21040;&#20102;&#20234;&#21345;&#27931;&#26031;&#35828;&#30340;&#35805;&#65292;&#24863;&#21040;&#20260;&#24515;&#12290;"</data>
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </node>
+    <node id="&quot;&#23432;&#24418;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#23432;&#24418;&#31934;&#20934;&#22320;&#29702;&#35299;&#20102;&#20026;&#20160;&#20040;&#20234;&#21345;&#27931;&#26031;&#36825;&#26679;&#20570;&#65292;&#24182;&#19988;&#22312;&#21518;&#26469;&#30340;&#20132;&#35848;&#20013;&#23545;&#20234;&#21345;&#27931;&#26031;&#34920;&#36798;&#20102;&#35299;&#37322;&#24182;&#36947;&#27465;&#12290;"</data>
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </node>
+    <node id="&quot;&#32654;&#39321;&#23376;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">&#20449;&#24687;&#26410;&#25552;&#21450;&#19982;"&#32654;&#39321;&#23376;"&#26377;&#20851;&#30340;&#20855;&#20307;&#24773;&#33410;&#12290;&#22240;&#27492;&#65292;&#26080;&#27861;&#25552;&#20379;&#19968;&#20010;&#26377;&#25928;&#30340;&#36755;&#20986;&#26465;&#30446;&#12290;</data>
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </node>
+    <node id="&quot;&#22958;&#22982;&#33433;&quot;&amp;&quot;&#21704;&#27604;&quot;">
+      <data key="d0" />
+      <data key="d1" />
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </node>
+    <node id="&quot;ORGANIZATION&quot;">
+      <data key="d0" />
+      <data key="d1" />
+      <data key="d2">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </node>
+    <node id="&quot;&#27604;&#30340;&#36523;&#24433;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#27604;&#30340;&#36523;&#24433;&#22312;&#25925;&#20107;&#20013;&#21487;&#33021;&#26159;&#26576;&#20010;&#20154;&#29289;&#25110;&#23454;&#20307;&#65292;&#20855;&#20307;&#35282;&#33394;&#20851;&#31995;&#26410;&#35814;&#32454;&#35828;&#26126;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;PROMETHEUS&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"Prometheus"&#21487;&#33021;&#26159;&#25351;&#19968;&#20010;&#32452;&#32455;&#12289;&#22242;&#38431;&#25110;&#26159;&#26576;&#31181;&#29305;&#23450;&#30340;&#35774;&#22791;&#65292;&#22312;&#25991;&#26412;&#20013;&#34987;&#25551;&#36848;&#20026;&#20351;&#29992;&#36229;&#39640;&#28201;&#27668;&#20307;&#21387;&#32553;&#28846;&#26469;&#25191;&#34892;&#20219;&#21153;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#35199;&#32435;&#26222;&#26031;&quot;">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"&#35199;&#32435;&#26222;&#26031;&#20316;&#20026;&#22320;&#28857;&#25110;&#32452;&#32455;&#30340;&#21517;&#31216;&#20986;&#29616;&#22312;&#25991;&#26412;&#20013;&#65292;&#19982;Prometheus&#21644;&#20234;&#21345;&#27931;&#26031;&#30340;&#34892;&#21160;&#30456;&#20851;&#32852;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#22958;&#22982;&#33433;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#22958;&#22982;&#33433;&#26159;&#19968;&#20010;&#22312;&#25925;&#20107;&#20013;&#30340;&#35282;&#33394;&#65292;&#22312;&#19981;&#21516;&#24773;&#33410;&#20013;&#37117;&#26377;&#28041;&#21450;&#65292;&#24182;&#19988;&#28041;&#21450;&#21040;&#22905;&#30340;&#34892;&#20026;&#21644;&#21453;&#24212;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#22825;&#22269;&#20043;&#27468;&#65288;PARADISE SONG&#65289;&quot;">
+      <data key="d0">"EVENT"</data>
+      <data key="d1">"&#22825;&#22269;&#20043;&#27468;&#26159;&#36229;&#38899;&#27874;&#25391;&#21160;&#31890;&#23376;&#30340;&#19968;&#31181;&#65292;&#20316;&#20026;&#25112;&#26007;&#25110;&#25915;&#20987;&#25163;&#27573;&#20351;&#29992;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#21704;&#27604;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#21704;&#27604;&#22312;&#25925;&#20107;&#20013;&#26159;&#19968;&#20010;&#35282;&#33394;&#25110;&#32773;&#23454;&#20307;&#65292;&#24182;&#19988;&#19982;&#22958;&#22982;&#33433;&#30340;&#20914;&#31361;&#20013;&#26377;&#30456;&#20851;&#25551;&#36848;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#31169;&#31435;&#23398;&#38498;&#21644;&#31354;&#32654;&#30010;&#21439;&#31435;&#20013;&#23398;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"&#31169;&#31435;&#23398;&#38498;&#19982;&#31354;&#32654;&#30010;&#21439;&#31435;&#20013;&#23398;&#22312;&#25991;&#26412;&#20013;&#20849;&#21516;&#20030;&#21150;&#25991;&#21270;&#31085;&#65292;&#25551;&#36848;&#20102;&#20004;&#25152;&#23398;&#26657;&#20043;&#38388;&#30340;&#20114;&#21160;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#21345;&#22885;&#26031;&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"&#21345;&#22885;&#26031;&#21487;&#33021;&#26159;&#19968;&#20010;&#35282;&#33394;&#25110;&#32773;&#26576;&#31181;&#31070;&#31192;&#21147;&#37327;&#65292;&#22312;&#25991;&#26412;&#20013;&#19982;&#22958;&#22982;&#33433;&#21644;&#26234;&#26641;&#30340;&#35282;&#33394;&#26377;&#20851;&#32852;&#12290;"</data>
+      <data key="d2">79c6b968dd26ced1e5737ab028c5cc57</data>
+    </node>
+    <node id="&quot;&#22958;&#22982;&#33433;&#30340;&#20027;&#20154;&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"The owner of Nim&#33433; is the driving force behind various unreasonable demands, revealing inconsistencies in behavior which then triggers questioning from Nim&#33433;. The true nature of this entity was revealed to be Kaos." ) ("entity"</data>
+      <data key="d2">8d6d29651331409a82c8f0a75c4b9a12</data>
+    </node>
+    <node id="&quot;&#22825;&#29579;&#26143;&#31995;&#32479;&#65288;&#20044;&#35834;&#26031;&#31995;&#32479;&#65289;&quot;">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"&#22825;&#29579;&#26143;&#31995;&#32479;&#65288;&#20044;&#35834;&#26031;&#31995;&#32479;&#65289;&#26159;&#21160;&#30011;&#12298;&#22825;&#38477;&#20043;&#29289;f&#12299;&#20013;&#29992;&#20110;&#23558;&#21345;&#22885;&#26031;&#21387;&#20837;&#28023;&#24213;&#30340;&#35013;&#32622;&#12290;") ("entity"</data>
+      <data key="d2">f38c3cad7fff314a806702c600339d07</data>
+    </node>
+    <node id="&quot;IKAROS (IRIS)&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"Ikaros, also known as Iris, is an artificial angel who protects and fights for its owner. After learning that her master Zest was severely injured, she expresses sorrow and defiance against the Meiran system's synthetic angels."</data>
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <node id="&quot;LOS&quot; (NOT FOUND IN ORIGINAL DATA)">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"Los is a term or name not explicitly defined within the text but could represent an organization or entity associated with wings or technology related to Ikaros."</data>
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <node id="&quot;ZEST (&#26234;&#26641;)&quot;">
+      <data key="d0">"PERSON"</data>
+      <data key="d1">"Zest, known as Zest in Japanese, decides to head for Sinapous after learning of his severe injury. He then commands Ikaros back down when her wings start burning due to being set against returning to Sinapous without permission."</data>
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <node id="&quot;SINAPOUS&quot; (NOT FOUND IN ORIGINAL DATA)">
+      <data key="d0">"GEO"</data>
+      <data key="d1">"Sinapous is a geographical location or place where Zest heads after his decision, likely involving some kind of conflict or journey."</data>
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <node id="&quot;MINOS (&#31354;&#20043;&#20027;)&quot;">
+      <data key="d0">"ORGANIZATION"</data>
+      <data key="d1">"Minos, referred to as 'the Lord of the Sky', seems like an organization or entity associated with Sinapous and possibly holds significant power there, as it is referenced in connection with Zest's decision."</data>
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <node id="&quot;IKAROS&quot;">
+      <data key="d0" />
+      <data key="d1" />
+      <data key="d2">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </node>
+    <edge source="&quot;&#22958;&#22982;&#33433;&quot;&amp;&quot;&#21704;&#27604;&quot;" target="&quot;ORGANIZATION&quot;">
+      <data key="d3">1.0</data>
+      <data key="d4">&#8220;&#23545;&#23769;&#8221;&#21644;&#8220;&#25588;&#25937;&#8221;&#30340;&#24773;&#33410;&#37117;&#28041;&#21450;&#21040;&#22958;&#22982;&#33433;&#19982;&#19981;&#21516;&#35282;&#33394;&#20043;&#38388;&#30340;&#20914;&#31361;&#65292;&#32780;&#8220;P=&#38544;&#34109;&#36855;&#24425;&#8221;&#21644;&#8220;&#36229;&#39640;&#28201;&#27668;&#20307;&#21387;&#32553;&#28846;&#65288;Prometheus&#65289;&#8221;&#21017;&#25551;&#36848;&#20102;&#20182;&#20204;&#30340;&#25112;&#26007;&#25163;&#27573;&#12290;)#("relationship"</data>
+      <data key="d5">b5a5400f3dc2e61307e21338c4553d3c</data>
+    </edge>
+    <edge source="&quot;ZEST (&#26234;&#26641;)&quot;" target="&quot;IKAROS&quot;">
+      <data key="d3">1.0</data>
+      <data key="d4">"Zest commands or has a close relationship with Ikaros, showing responsibility and care for its safety and actions."</data>
+      <data key="d5">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </edge>
+    <edge source="&quot;MINOS (&#31354;&#20043;&#20027;)&quot;" target="&quot;IKAROS&quot;">
+      <data key="d3">1.0</data>
+      <data key="d4">"Ikaros faces Minos during her journey to Sinapous, indicating she is involved in some kind of conflict or confrontation with this entity."</data>
+      <data key="d5">20944d8fe35d409bc5c6bb8ba5df918c</data>
+    </edge>
+  </graph>
+</graphml>
