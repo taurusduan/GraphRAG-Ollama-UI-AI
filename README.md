@@ -1,5 +1,9 @@
 # GraphRAG-Ollama-UI + GraphRAG4OpenWebUI 融合版
 
+视频教程：[https://www.bilibili.com/video/BV1sW42197hT/](https://www.bilibili.com/video/BV1sW42197hT/)  
+
+win整合包：[夸克网盘](https://pan.quark.cn/s/936dcae8aba0#/list/share/56a79e143a8b4877a98a61854e07b229-AI%20Vtuber/a45ffa878e304910a1bfe15c67932807-%E5%85%B6%E4%BB%96%E5%8C%85/c252f86f288540d190ad044ef688ee14-GraphRAG*101Ollama*101UI), [迅雷网盘](https://pan.xunlei.com/s/VNitDF0Y3l-qwTpE0A5Rh4DaA1?path=%2F%E5%88%86%E4%BA%AB%2F%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%2FGraphRAG-Ollama-UI)  
+
 ## 部署&使用
 
 ### 0. 环境
@@ -19,8 +23,8 @@ pip install -r requirements.txt
 
 #### gradio webui
 
-ragtest\settings.yaml 完成相应配置（llm，embedding等） 更多参考：[https://microsoft.github.io/graphrag/posts/config/json_yaml/](https://microsoft.github.io/graphrag/posts/config/json_yaml/)
-ragtest\.env 配置密钥
+ragtest\settings.yaml 完成相应配置（llm，embedding等） 更多参考：[https://microsoft.github.io/graphrag/posts/config/json_yaml/](https://microsoft.github.io/graphrag/posts/config/json_yaml/)  
+ragtest\\.env 配置密钥  
 
 运行gradio webui
 ```
@@ -29,7 +33,8 @@ python app.py
 
 #### api
 
-api_config.json 完成配置（INPUT_RAG_DIR这个RAG完成后输出的路径下的artifacts，以及llm，embedding等）
+api_config.json 完成配置（INPUT_RAG_DIR这个RAG完成后输出的路径下的artifacts，以及llm，embedding等）  
+tavily API获取：[https://app.tavily.com/home](https://app.tavily.com/home) (Tavily Search API是针对LLMs和RAG优化的搜索引擎，旨在提供高效、快速和持久的搜索结果。与Serp或Google等其他搜索API不同，Tavily专注于为AI开发人员和自主AI代理优化搜索。我们负责从在线资源中搜索、抓取、过滤和提取最相关信息的所有负担。所有这些都在一个API调用中完成！)   
 
 运行api.py
 ```
@@ -39,12 +44,21 @@ python api.py
 ### 4. 访问
 
 #### webui
+
 打开浏览器，访问 http://127.0.0.1:7860 即可使用。
 
 #### api文档
 
 http://127.0.0.1:8012/docs
 
+
+## 原始项目
+
+[https://github.com/microsoft/graphrag](https://github.com/microsoft/graphrag)  
+
+[https://github.com/severian42/GraphRAG-Ollama-UI](https://github.com/severian42/GraphRAG-Ollama-UI)  
+
+[https://github.com/win4r/GraphRAG4OpenWebUI](https://github.com/win4r/GraphRAG4OpenWebUI)  
 
 # GraphRAG-Ollama-UI
 

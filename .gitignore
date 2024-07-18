@@ -168,6 +168,7 @@ branch/
 Miniconda3/
 
 ragtest/output/
+ragtest/cache/
 
 graphrag/__pycache__/
 
