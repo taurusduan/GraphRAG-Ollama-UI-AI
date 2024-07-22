@@ -922,4 +922,4 @@ demo = demo.queue()
 
 
 if __name__ == "__main__":
-    demo.launch(share=True, reload=False)
+    demo.launch(share=True)

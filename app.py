@@ -863,7 +863,9 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
                             placeholder="在这里输入你的查询...",
                             elem_id="query-input"
                         )
+                    
                         query_btn = gr.Button("发送查询", variant="primary")
+                        clear_chatbot_btn = gr.Button("清空对话", variant="stop")
 
                 with gr.Accordion("查询参数", open=True):
                     query_type = gr.Radio(
@@ -1026,6 +1028,9 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
         ],
         outputs=[chatbot, query_input, log_output]
     )
+
+    # 设置按钮点击事件触发清空聊天记录
+    clear_chatbot_btn.click(fn=lambda: [], inputs=None, outputs=chatbot)
 
     query_input.submit(
         fn=send_message,
