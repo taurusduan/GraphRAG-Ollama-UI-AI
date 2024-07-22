@@ -87,6 +87,7 @@ if __name__ == "__main__":
                 args.community_level,
                 args.response_type,
                 args.query[0],
+                
             )
         case _:
             raise ValueError(INVALID_METHOD_ERROR)

@@ -66,9 +66,9 @@ def run_global_search(
     community_level: int,
     response_type: str,
     query: str,
-    config: GraphRagConfig,
 ):
     """Run a global search with the given query."""
+    data_dir, root_dir, config = _configure_paths_and_settings(data_dir, root_dir)
     logger.info(f"Starting global search with query: {query}")
     
     root_dir = config.root_dir
@@ -101,6 +101,8 @@ def run_global_search(
     except Exception as e:
         logger.error(f"Error reading parquet file {parquet_path}: {str(e)}")
         raise IOError(f"Error reading parquet file {parquet_path}: {str(e)}")
+
+    data_dir = Path(data_dir)
 
     final_entities: pd.DataFrame = pd.read_parquet(
         data_dir / "create_final_entities.parquet"

@@ -130,28 +130,90 @@ def index_graph(progress=gr.Progress()):
     logging.info("Indexing completed")
     return "\n".join(full_output), update_logs()
 
-def run_query(root_dir, method, query, history, model, temperature, max_tokens):
-    system_message = f"You are a helpful assistant performing a {method} search on the knowledge graph. Provide a concise and relevant answer based on the query."
-    messages = [{"role": "system", "content": system_message}]
-    for item in history:
-        if isinstance(item, tuple) and len(item) == 2:
-            human, ai = item
-            messages.append({"role": "user", "content": human})
-            messages.append({"role": "assistant", "content": ai})
-    messages.append({"role": "user", "content": query})
+def construct_cli_args(query_type, preset, community_level, response_type, custom_cli_args, query, selected_folder):
+    if not selected_folder:
+        raise ValueError("No folder selected. Please select an output folder before querying.")
 
+    artifacts_folder = os.path.join("./ragtest/output", selected_folder, "artifacts")
+    if not os.path.exists(artifacts_folder):
+        raise ValueError(f"Artifacts folder not found in {artifacts_folder}")
+
+    base_args = [
+        "python", "-m", "graphrag.query",
+        "--data", artifacts_folder,
+        "--method", query_type,
+        "--root", "./ragtest"
+    ]
+
+    # Apply preset configurations
+    if preset.startswith("Default"):
+        base_args.extend(["--community_level", "2", "--response_type", "Multiple Paragraphs"])
+    elif preset.startswith("Detailed"):
+        base_args.extend(["--community_level", "4", "--response_type", "Multi-Page Report"])
+    elif preset.startswith("Quick"):
+        base_args.extend(["--community_level", "1", "--response_type", "Single Paragraph"])
+    elif preset.startswith("Bullet"):
+        base_args.extend(["--community_level", "2", "--response_type", "List of 3-7 Points"])
+    elif preset.startswith("Comprehensive"):
+        base_args.extend(["--community_level", "5", "--response_type", "Multi-Page Report"])
+    elif preset.startswith("High-Level"):
+        base_args.extend(["--community_level", "1", "--response_type", "Single Page"])
+    elif preset.startswith("Focused"):
+        base_args.extend(["--community_level", "3", "--response_type", "Multiple Paragraphs"])
+    elif preset == "Custom Query":
+        base_args.extend([
+            "--community_level", str(community_level),
+            "--response_type", f'"{response_type}"',
+        ])
+        if custom_cli_args:
+            base_args.extend(custom_cli_args.split())
+
+    # Add the query at the end
+    base_args.append(query)
+    
+    return base_args
+
+def send_message(query_type, query, history, system_message, temperature, max_tokens, preset, community_level, response_type, custom_cli_args, selected_folder):
     try:
-        response = chat(
-            model=model,
-            messages=messages,
-            options={
-                "temperature": temperature,
-                "num_predict": max_tokens
-            }
-        )
-        return response['message']['content']
+        if query_type in ["global", "local"]:
+            cli_args = construct_cli_args(query_type, preset, community_level, response_type, custom_cli_args, query, selected_folder)
+            logging.info(f"Executing {query_type} search with command: {' '.join(cli_args)}")
+            result = run_graphrag_query(cli_args)
+            logging.info(f"Query result: {result}")
+        else:  # Direct chat
+            llm_model = os.getenv("LLM_MODEL")
+            llm_api_base = os.getenv("LLM_API_BASE")
+            logging.info(f"Executing direct chat with model: {llm_model}, API base: {llm_api_base}")
+            
+            try:
+                result = chat_with_llm(query, history, system_message, temperature, max_tokens, llm_model, llm_api_base)
+                logging.info(f"Direct chat result: {result[:100]}...")  # Log first 100 chars of result
+            except Exception as chat_error:
+                logging.error(f"Error in chat_with_llm: {str(chat_error)}")
+                raise RuntimeError(f"Direct chat failed: {str(chat_error)}")
+        
+        history.append((query, result))
     except Exception as e:
-        return f"Error: {str(e)}"
+        error_message = f"An error occurred: {str(e)}"
+        logging.error(error_message)
+        logging.exception("Exception details:")
+        history.append((query, error_message))
+    
+    return history, gr.update(value=""), update_logs()
+
+
+
+def run_graphrag_query(cli_args):
+    try:
+        command = ' '.join(cli_args)
+        logging.info(f"Executing command: {command}")
+        result = subprocess.run(cli_args, capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Error running GraphRAG query: {e}")
+        logging.error(f"Command output (stdout): {e.stdout}")
+        logging.error(f"Command output (stderr): {e.stderr}")
+        raise RuntimeError(f"GraphRAG query failed: {e.stderr}")
 
 def upload_file(file):
     if file is not None:
@@ -397,18 +459,7 @@ def chat_with_llm(message, history, system_message, temperature, max_tokens, mod
     except Exception as e:
         return f"Error: {str(e)}"
 
-def send_message(query_type, query, history, system_message, temperature, max_tokens, model):
-    root_dir = "./ragtest"
-    try:
-        if query_type in ["global", "local"]:
-            result = run_query(root_dir, query_type, query, history, model, temperature, max_tokens)
-        else:  # Direct chat
-            result = chat_with_llm(query, history, system_message, temperature, max_tokens, model)
-        history.append((query, result))
-    except Exception as e:
-        error_message = f"An error occurred: {str(e)}"
-        history.append((query, error_message))
-    return history, gr.update(value=""), update_logs()
+
 
 def fetch_ollama_models():
     try:
@@ -806,7 +857,6 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
             with gr.Group(elem_id="chat-container"):
                 chatbot = gr.Chatbot(label="聊天记录", elem_id="chatbot")
                 with gr.Row(elem_id="chat-input-row"):
-                    query_type = gr.Radio(["global", "local", "direct"], label="查询类型", value="global")
                     with gr.Column(scale=1):
                         query_input = gr.Textbox(
                             label="查询",
@@ -814,6 +864,79 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
                             elem_id="query-input"
                         )
                         query_btn = gr.Button("发送查询", variant="primary")
+
+                with gr.Accordion("查询参数", open=True):
+                    query_type = gr.Radio(
+                        ["global", "local", "direct"],
+                        label="查询类型",
+                        value="global",
+                        info="Global: 基于社区的搜索, Local: 基于实体的搜索, Direct: 直接聊天"
+                    )
+                    preset_dropdown = gr.Dropdown(
+                        label="预设查询选项",
+                        choices=[
+                            "Default Global Search",
+                            "Default Local Search",
+                            "Detailed Global Analysis",
+                            "Detailed Local Analysis",
+                            "Quick Global Summary",
+                            "Quick Local Summary",
+                            "Global Bullet Points",
+                            "Local Bullet Points",
+                            "Comprehensive Global Report",
+                            "Comprehensive Local Report",
+                            "High-Level Global Overview",
+                            "High-Level Local Overview",
+                            "Focused Global Insight",
+                            "Focused Local Insight",
+                            "Custom Query"
+                        ],
+                        value="Default Global Search",
+                        info="选择一个预设选项或选择“自定义查询”进行手动配置"
+                    )
+                    selected_folder = gr.Dropdown(
+                        label="选择输出文件夹",
+                        choices=list_output_folders("./ragtest"),
+                        value=None,
+                        interactive=True
+                    )
+                    refresh_selected_folder_btn = gr.Button("刷新输出文件夹", variant="secondary")
+                    
+                    with gr.Group(visible=False) as custom_options:
+                        community_level = gr.Slider(
+                            label="社区级别",
+                            minimum=1,
+                            maximum=10,
+                            value=2,
+                            step=1,
+                            info="较高的值使用较小社区的报告"
+                        )
+                        response_type = gr.Dropdown(
+                            label="响应类型",
+                            choices=[
+                                "Multiple Paragraphs",
+                                "Single Paragraph",
+                                "Single Sentence",
+                                "List of 3-7 Points",
+                                "Single Page",
+                                "Multi-Page Report"
+                            ],
+                            value="Multiple Paragraphs",
+                            info="指定所需的响应格式"
+                        )
+                        custom_cli_args = gr.Textbox(
+                            label="自定义 CLI 参数",
+                            placeholder="--arg1 value1 --arg2 value2",
+                            info="高级用户的额外 CLI 参数"
+                        )
+
+                def update_custom_options(preset):
+                    if preset == "自定义查询":
+                        return gr.update(visible=True)
+                    else:
+                        return gr.update(visible=False)
+
+                preset_dropdown.change(fn=update_custom_options, inputs=[preset_dropdown], outputs=[custom_options])
 
                 with gr.Accordion("模型参数", open=False):
                     system_message = gr.Textbox(label="系统设定", value="你是一个有帮助的助手。", lines=2)
@@ -847,6 +970,10 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
         show_progress=True
     )
     refresh_folder_btn.click(fn=update_output_folder_list, outputs=[output_folder_list]).then(
+        fn=update_logs,
+        outputs=[log_output]
+    )
+    refresh_selected_folder_btn.click(fn=update_output_folder_list, outputs=[selected_folder]).then(
         fn=update_logs,
         outputs=[log_output]
     )
@@ -884,12 +1011,37 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
     )
     query_btn.click(
         fn=send_message,
-        inputs=[query_type, query_input, chatbot, system_message, temperature, max_tokens, model],
+        inputs=[
+            query_type,
+            query_input,
+            chatbot,
+            system_message,
+            temperature,
+            max_tokens,
+            preset_dropdown,
+            community_level,
+            response_type,
+            custom_cli_args,
+            selected_folder
+        ],
         outputs=[chatbot, query_input, log_output]
     )
+
     query_input.submit(
         fn=send_message,
-        inputs=[query_type, query_input, chatbot, system_message, temperature, max_tokens, model],
+        inputs=[
+            query_type,
+            query_input,
+            chatbot,
+            system_message,
+            temperature,
+            max_tokens,
+            preset_dropdown,
+            community_level,
+            response_type,
+            custom_cli_args,
+            selected_folder
+        ],
         outputs=[chatbot, query_input, log_output]
     )
     refresh_models_btn.click(
