@@ -9,9 +9,9 @@ chunks:
   size: 512
 claim_extraction:
   enabled: true
-  prompt: "prompts/claim_extraction.txt"
-  description: "Any claims or facts that could be relevant to information discovery."
-  max_gleanings: 1
+  description: Any claims or facts that could be relevant to information discovery.
+  max_gleanings: 0
+  prompt: prompts/claim_extraction.txt
 cluster_graph:
   max_cluster_size: 10
 community_report:
@@ -24,9 +24,11 @@ embeddings:
   async_mode: threaded
   llm:
     api_base: http://127.0.0.1:11434/api
-    api_key: ${EMBEDDING_API_KEY}
-    concurrent_requests: 10
+    api_key: ${GRAPHRAG_API_KEY}
+    concurrent_requests: 25
     model: nomic-embed-text:latest
+    model_supports_json: true
+    provider: openai_embedding
     type: openai_embedding
 encoding_model: cl100k_base
 entity_extraction:
@@ -47,11 +49,14 @@ input:
   type: file
 llm:
   api_base: http://127.0.0.1:11434/v1
-  api_key: ${LLM_API_KEY}
-  concurrent_requests: 10
-  model: gemma2:latest
+  api_key: ${GRAPHRAG_API_KEY}
+  concurrent_requests: 25
+  max_tokens: 1024
+  model: qwen2:latest
   model_supports_json: true
-  type: openai_chat
+  provider: openai_chat
+  temperature: 0.5
+  type: openai
 local_search: null
 parallelization:
   num_threads: 50

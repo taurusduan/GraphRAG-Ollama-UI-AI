@@ -173,3 +173,9 @@ ragtest/cache/
 graphrag/__pycache__/
 
 *.bat
+
+bak/
+
+origin/
+
+old/

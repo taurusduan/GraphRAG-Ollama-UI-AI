@@ -320,7 +320,13 @@ async def run_pipeline(
             await inject_workflow_data_dependencies(workflow)
 
             workflow_start_time = time.time()
-            result = await workflow.run(context, callbacks)
+            try:
+                result = await workflow.run(context, callbacks)
+            except Exception as e:
+                logging.error(f"Error running workflow {workflow.name}: {str(e)}")
+                # If this is a critical workflow, you might want to raise the error
+                # Otherwise, you can continue with the next workflow
+                continue
             await write_workflow_stats(workflow, result, workflow_start_time)
 
             # Save the output from the workflow
