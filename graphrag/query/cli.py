@@ -62,11 +62,49 @@ def run_global_search(
 ):
     """Run a global search with the given query."""
     data_dir, root_dir, config = _configure_paths_and_settings(data_dir, root_dir)
+<<<<<<< HEAD
     data_path = Path(data_dir)
 
     final_nodes: pd.DataFrame = pd.read_parquet(
         data_path / "create_final_nodes.parquet"
     )
+=======
+    logger.info(f"Starting global search with query: {query}")
+    
+    root_dir = config.root_dir
+    if not root_dir:
+        raise ValueError("Root directory is not defined in the configuration")
+    
+    output_dir = os.path.join(root_dir, "output")
+    logger.info(f"Output directory: {output_dir}")
+    
+    if not os.path.exists(output_dir):
+        raise FileNotFoundError(f"Output directory does not exist: {output_dir}")
+    
+    # Find the latest run directory
+    run_dirs = [d for d in os.listdir(output_dir) if os.path.isdir(os.path.join(output_dir, d))]
+    if not run_dirs:
+        raise FileNotFoundError(f"No run directories found in {output_dir}")
+    
+    latest_run = max(run_dirs)  # Assumes directory names are sortable (e.g., timestamps)
+    logger.info(f"Latest run directory: {latest_run}")
+    
+    parquet_path = os.path.join(output_dir, latest_run, "artifacts", "create_final_nodes.parquet")
+    logger.info(f"Looking for parquet file: {parquet_path}")
+    
+    if not os.path.exists(parquet_path):
+        raise FileNotFoundError(f"Parquet file not found: {parquet_path}")
+    
+    try:
+        final_nodes: pd.DataFrame = pd.read_parquet(parquet_path)
+        logger.info(f"Successfully read parquet file with {len(final_nodes)} rows")
+    except Exception as e:
+        logger.error(f"Error reading parquet file {parquet_path}: {str(e)}")
+        raise IOError(f"Error reading parquet file {parquet_path}: {str(e)}")
+
+    data_dir = Path(data_dir)
+
+>>>>>>> bfff5bb6fd9dfea67e738b08b470ce58be69a304
     final_entities: pd.DataFrame = pd.read_parquet(
         data_path / "create_final_entities.parquet"
     )
