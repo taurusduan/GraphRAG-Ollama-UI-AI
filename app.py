@@ -726,8 +726,8 @@ def update_visualization(folder_name, file_name, layout_type, node_size, edge_wi
 
         fig.update_layout(autosize=True)
         fig.update_layout(height=600)  # Set a fixed height
-        config = {'responsive': True}
-        return fig, f"Graph visualization generated successfully. Using file: {graph_path}", config
+        # config = {'responsive': True}
+        return fig
     except Exception as e:
         return None, f"Error visualizing graph: {str(e)}"
 
