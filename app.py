@@ -149,7 +149,7 @@ class VectorStoreWrapper:
     def __setstate__(self, state):
         # This method is called when unpickling the object
         self.__dict__.update(state)
-        # _vector_store will be None, but it will be recreated when needed    
+        # _vector_store will be None, but it will be recreated when needed
 
 def create_vector_store_wrapper(text_embedder):
     return VectorStoreWrapper(
@@ -162,25 +162,25 @@ def create_vector_store_wrapper(text_embedder):
 
 def initialize_models():
     global llm, text_embedder
-    
+
     llm_api_base = os.getenv("LLM_API_BASE")
     llm_api_key = os.getenv("LLM_API_KEY")
     embeddings_api_base = os.getenv("EMBEDDINGS_API_BASE")
     embeddings_api_key = os.getenv("EMBEDDINGS_API_KEY")
-    
+
     llm_service_type = os.getenv("LLM_SERVICE_TYPE")
     embeddings_service_type = os.getenv("EMBEDDINGS_SERVICE_TYPE")
-    
+
     llm_model = os.getenv("LLM_MODEL")
     embeddings_model = os.getenv("EMBEDDINGS_MODEL")
-    
+
     logging.info("Fetching models...")
     models = fetch_models(llm_api_base, llm_api_key, llm_service_type)
-    
+
     # Use the same models list for both LLM and embeddings
     llm_models = models
     embeddings_models = models
-    
+
     # Initialize LLM
     if llm_service_type.lower() == "openai_chat":
         llm = ChatOpenAI(
@@ -216,22 +216,22 @@ def initialize_models():
             "provider": embeddings_service_type.lower()
         }
     )
-    
+
     return llm_models, embeddings_models, llm_service_type, embeddings_service_type, llm_api_base, embeddings_api_base, text_embedder
 
 def find_latest_output_folder():
     root_dir = "./ragtest/output"
     folders = [f for f in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, f))]
-    
+
     if not folders:
         raise ValueError("No output folders found")
-    
+
     # Sort folders by creation time, most recent first
     sorted_folders = sorted(folders, key=lambda x: os.path.getctime(os.path.join(root_dir, x)), reverse=True)
-    
+
     latest_folder = None
     timestamp = None
-    
+
     for folder in sorted_folders:
         try:
             # Try to parse the folder name as a timestamp
@@ -241,21 +241,21 @@ def find_latest_output_folder():
         except ValueError:
             # If the folder name is not a valid timestamp, skip it
             continue
-    
+
     if latest_folder is None:
         raise ValueError("No valid timestamp folders found")
-    
+
     latest_path = os.path.join(root_dir, latest_folder)
     artifacts_path = os.path.join(latest_path, "artifacts")
-    
+
     if not os.path.exists(artifacts_path):
         raise ValueError(f"Artifacts folder not found in {latest_path}")
-    
+
     return latest_path, latest_folder
 
 def initialize_data():
     global entity_df, relationship_df, text_unit_df, report_df, covariate_df
-    
+
     tables = {
         "entity_df": "create_final_nodes",
         "relationship_df": "create_final_edges",
@@ -263,17 +263,17 @@ def initialize_data():
         "report_df": "create_final_reports",
         "covariate_df": "create_final_covariates"
     }
-    
+
     timestamp = None  # Initialize timestamp to None
-    
+
     try:
         latest_output_folder, timestamp = find_latest_output_folder()
         artifacts_folder = os.path.join(latest_output_folder, "artifacts")
-        
+
         for df_name, file_prefix in tables.items():
             file_pattern = os.path.join(artifacts_folder, f"{file_prefix}*.parquet")
             matching_files = glob.glob(file_pattern)
-            
+
             if matching_files:
                 latest_file = max(matching_files, key=os.path.getctime)
                 df = pd.read_parquet(latest_file)
@@ -282,7 +282,7 @@ def initialize_data():
             else:
                 logging.warning(f"No matching file found for {df_name} in {artifacts_folder}. Initializing as an empty DataFrame.")
                 globals()[df_name] = pd.DataFrame()
-    
+
     except Exception as e:
         logging.error(f"Error initializing data: {str(e)}")
         for df_name in tables.keys():
@@ -334,7 +334,7 @@ def update_setting(key, value):
         settings[key] = json.loads(value)
     except json.JSONDecodeError:
         settings[key] = value
-    
+
     try:
         with open("ragtest/settings.yaml", "w") as f:
             yaml.dump(settings, f, default_flow_style=False)
@@ -350,11 +350,11 @@ def create_setting_component(key, value):
         else:
             value_str = str(value)
             lines = 1
-        
+
         text_area = gr.TextArea(value=value_str, label="Value", lines=lines, max_lines=20)
         update_btn = gr.Button("Update", variant="primary")
         status = gr.Textbox(label="Status", visible=False)
-        
+
         update_btn.click(
             fn=update_setting,
             inputs=[gr.Textbox(value=key, visible=False), text_area],
@@ -436,21 +436,21 @@ def send_message(query_type, query, history, system_message, temperature, max_to
             llm_model = os.getenv("LLM_MODEL")
             llm_api_base = os.getenv("LLM_API_BASE")
             logging.info(f"Executing direct chat with model: {llm_model}, API base: {llm_api_base}")
-            
+
             try:
                 result = chat_with_llm(query, history, system_message, temperature, max_tokens, llm_model, llm_api_base)
                 logging.info(f"Direct chat result: {result[:100]}...")  # Log first 100 chars of result
             except Exception as chat_error:
                 logging.error(f"Error in chat_with_llm: {str(chat_error)}")
                 raise RuntimeError(f"Direct chat failed: {str(chat_error)}")
-        
+
         history.append((query, result))
     except Exception as e:
         error_message = f"An error occurred: {str(e)}"
         logging.error(error_message)
         logging.exception("Exception details:")
         history.append((query, error_message))
-    
+
     return history, gr.update(value=""), update_logs()
 
 def construct_cli_args(query_type, preset, community_level, response_type, custom_cli_args, query, selected_folder):
@@ -463,25 +463,26 @@ def construct_cli_args(query_type, preset, community_level, response_type, custo
 
     base_args = [
         "python", "-m", "graphrag.query",
+        "--root", "./ragtest/",
         "--data", artifacts_folder,
         "--method", query_type,
     ]
 
     # Apply preset configurations
     if preset.startswith("Default"):
-        base_args.extend(["--community_level", "2", "--response_type", "Multiple Paragraphs"])
+        base_args.extend(["--community_level", "2", "--response_type", '"Multiple Paragraphs"'])
     elif preset.startswith("Detailed"):
-        base_args.extend(["--community_level", "4", "--response_type", "Multi-Page Report"])
+        base_args.extend(["--community_level", "4", "--response_type", '"Multi-Page Report"'])
     elif preset.startswith("Quick"):
-        base_args.extend(["--community_level", "1", "--response_type", "Single Paragraph"])
+        base_args.extend(["--community_level", "1", "--response_type", '"Single Paragraph"'])
     elif preset.startswith("Bullet"):
-        base_args.extend(["--community_level", "2", "--response_type", "List of 3-7 Points"])
+        base_args.extend(["--community_level", "2", "--response_type", '"List of 3-7 Points"'])
     elif preset.startswith("Comprehensive"):
-        base_args.extend(["--community_level", "5", "--response_type", "Multi-Page Report"])
+        base_args.extend(["--community_level", "5", "--response_type", '"Multi-Page Report"'])
     elif preset.startswith("High-Level"):
-        base_args.extend(["--community_level", "1", "--response_type", "Single Page"])
+        base_args.extend(["--community_level", "1", "--response_type", '"Single Page"'])
     elif preset.startswith("Focused"):
-        base_args.extend(["--community_level", "3", "--response_type", "Multiple Paragraphs"])
+        base_args.extend(["--community_level", "3", "--response_type", '"Multiple Paragraphs"'])
     elif preset == "Custom Query":
         base_args.extend([
             "--community_level", str(community_level),
@@ -491,8 +492,8 @@ def construct_cli_args(query_type, preset, community_level, response_type, custo
             base_args.extend(custom_cli_args.split())
 
     # Add the query at the end
-    base_args.append(query)
-    
+    base_args.append(f'"{query}"')
+
     return base_args
 
 
@@ -504,16 +505,16 @@ def upload_file(file):
     if file is not None:
         input_dir = os.path.join("ragtest", "input")
         os.makedirs(input_dir, exist_ok=True)
-        
+
         # Get the original filename from the uploaded file
         original_filename = file.name
-        
+
         # Create the destination path
         destination_path = os.path.join(input_dir, os.path.basename(original_filename))
-        
+
         # Move the uploaded file to the destination path
         shutil.move(file.name, destination_path)
-        
+
         logging.info(f"File uploaded and moved to: {destination_path}")
         status = f"File uploaded: {os.path.basename(original_filename)}"
     else:
@@ -521,7 +522,7 @@ def upload_file(file):
 
     # Get the updated file list
     updated_file_list = [f["path"] for f in list_input_files()]
-    
+
     return status, gr.update(choices=updated_file_list), update_logs()
 
 def list_input_files():
@@ -542,27 +543,27 @@ def delete_file(file_path):
 
     # Get the updated file list
     updated_file_list = [f["path"] for f in list_input_files()]
-    
+
     return status, gr.update(choices=updated_file_list), update_logs()
 
 def read_file_content(file_path):
     try:
         if file_path.endswith('.parquet'):
             df = pd.read_parquet(file_path)
-            
+
             # Get basic information about the DataFrame
             info = f"Parquet File: {os.path.basename(file_path)}\n"
             info += f"Rows: {len(df)}, Columns: {len(df.columns)}\n\n"
             info += "Column Names:\n" + "\n".join(df.columns) + "\n\n"
-            
+
             # Display first few rows
             info += "First 5 rows:\n"
             info += df.head().to_string() + "\n\n"
-            
+
             # Display basic statistics
             info += "Basic Statistics:\n"
             info += df.describe().to_string()
-            
+
             return info
         else:
             with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
@@ -590,9 +591,9 @@ def manage_data():
     if tables:
         table = db[tables[0]]
         table_info = f"Table: {tables[0]}\nSchema: {table.schema}"
-    
+
     input_files = list_input_files()
-    
+
     return {
         "database_info": f"Tables: {', '.join(tables)}\n\n{table_info}",
         "input_files": input_files
@@ -610,10 +611,10 @@ def find_latest_graph_file(root_dir):
             latest_run = max(run_dirs)
             pattern = os.path.join(root_dir, "output", latest_run, "artifacts", "*.graphml")
             graph_files = glob.glob(pattern)
-    
+
     if not graph_files:
         return None
-    
+
     # Sort files by modification time, most recent first
     latest_file = max(graph_files, key=os.path.getmtime)
     return latest_file
@@ -743,17 +744,17 @@ def update_model_choices(base_url, api_key, service_type="openai"):
         models = fetch_ollama_models(base_url)
     else:  # OpenAI Compatible
         models = fetch_openai_models(base_url, api_key)
-    
+
     if not models:
         logging.warning(f"No models fetched for {service_type}.")
 
     # Get the current model from settings
     current_model = settings['llm'].get('model')
-    
+
     # If the current model is not in the list, add it
     if current_model and current_model not in models:
         models.append(current_model)
-    
+
     return gr.update(choices=models, value=current_model if current_model in models else (models[0] if models else None))
 
 def fetch_ollama_models(base_url):
@@ -768,11 +769,11 @@ def fetch_ollama_models(base_url):
                 models = [model['name'] for model in data['models']]
             else:
                 models = [tag['name'] for tag in data]  # The response is a list of tag objects
-            
+
             if not models:
                 logging.warning("No models found in Ollama API response")
                 return ["No models available"]
-            
+
             logging.info(f"Successfully fetched Ollama models: {models}")
             return models
         else:
@@ -813,21 +814,21 @@ def update_embeddings_model_choices(base_url, api_key, service_type):
         models = fetch_ollama_models(base_url)
     else:  # OpenAI Compatible
         models = fetch_openai_models(base_url, api_key)
-    
+
     if not models:
         logging.warning(f"No models fetched for {service_type}.")
 
     # Get the current model from settings
     current_model = settings['embeddings']['llm'].get('model')
-    
+
     # If the current model is not in the list, add it
     if current_model and current_model not in models:
         models.append(current_model)
-    
+
     return gr.update(choices=models, value=current_model if current_model in models else (models[0] if models else None))
 
-def update_llm_settings(llm_model, embeddings_model, context_window, system_message, temperature, max_tokens, 
-                        llm_api_base, llm_api_key, 
+def update_llm_settings(llm_model, embeddings_model, context_window, system_message, temperature, max_tokens,
+                        llm_api_base, llm_api_key,
                         embeddings_api_base, embeddings_api_key, embeddings_service_type):
     try:
         # Update settings.yaml
@@ -848,10 +849,10 @@ def update_llm_settings(llm_model, embeddings_model, context_window, system_mess
             "api_key": "${GRAPHRAG_API_KEY}",
             "provider": embeddings_service_type
         })
-        
+
         with open("ragtest/settings.yaml", 'w') as f:
             yaml.dump(settings, f, default_flow_style=False)
-        
+
         # Update .env file
         update_env_file("LLM_API_BASE", llm_api_base)
         update_env_file("LLM_API_KEY", llm_api_key)
@@ -865,10 +866,10 @@ def update_llm_settings(llm_model, embeddings_model, context_window, system_mess
         update_env_file("MAX_TOKENS", str(max_tokens))
         update_env_file("LLM_SERVICE_TYPE", "openai_chat")
         update_env_file("EMBEDDINGS_SERVICE_TYPE", embeddings_service_type)
-        
+
         # Reload environment variables
         load_dotenv(override=True)
-        
+
         return "LLM and embeddings settings updated successfully in both settings.yaml and .env files."
     except Exception as e:
         return f"Error updating LLM and embeddings settings: {str(e)}"
@@ -877,17 +878,17 @@ def update_env_file(key, value):
     env_path = 'ragtest/.env'
     with open(env_path, 'r') as file:
         lines = file.readlines()
-    
+
     updated = False
     for i, line in enumerate(lines):
         if line.startswith(f"{key}="):
             lines[i] = f"{key}={value}\n"
             updated = True
             break
-    
+
     if not updated:
         lines.append(f"{key}={value}\n")
-    
+
     with open(env_path, 'w') as file:
         file.writelines(lines)
 
@@ -1175,7 +1176,7 @@ def handle_content_selection(folder_name, selected_item):
     root_dir = "./ragtest"
     if isinstance(selected_item, list) and selected_item:
         selected_item = selected_item[0]  # Take the first item if it's a list
-    
+
     if isinstance(selected_item, str) and selected_item.startswith("[DIR]"):
         dir_name = selected_item[6:]  # Remove "[DIR] " prefix
         sub_contents = list_folder_contents(os.path.join(root_dir, "output", folder_name, dir_name))
@@ -1266,25 +1267,25 @@ def run_indexing(root_dir, config_file, verbose, nocache, resume, reporter, emit
         cmd.extend(["--resume", resume])
     cmd.extend(["--reporter", reporter])
     cmd.extend(["--emit", ",".join(emit_formats)])
-    
+
     logging.info(f"Executing command: {' '.join(cmd)}")
-    
+
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, encoding='utf-8', universal_newlines=True)
-    
+
     output = []  # Change back to a list
     progress_value = 0
     iterations_completed = 0
-    
+
     while True:
         if stop_indexing.is_set():
             process.terminate()
             process.wait(timeout=5)
             if process.poll() is None:
                 process.kill()
-            return ("\n".join(output + ["Indexing stopped by user."]), 
-                    "Indexing stopped.", 
-                    100, 
-                    gr.update(interactive=True), 
+            return ("\n".join(output + ["Indexing stopped by user."]),
+                    "Indexing stopped.",
+                    100,
+                    gr.update(interactive=True),
                     gr.update(interactive=False),
                     gr.update(interactive=True),
                     str(iterations_completed))
@@ -1297,7 +1298,7 @@ def run_indexing(root_dir, config_file, verbose, nocache, resume, reporter, emit
             if line:
                 line = line.strip()
                 output.append(line)
-                
+
                 if "Processing file" in line:
                     progress_value += 1
                     iterations_completed += 1
@@ -1305,35 +1306,35 @@ def run_indexing(root_dir, config_file, verbose, nocache, resume, reporter, emit
                     progress_value = 100
                 elif "ERROR" in line:
                     line = f"🚨 ERROR: {line}"
-                
-                yield ("\n".join(output), 
+
+                yield ("\n".join(output),
                        line,  # Use the latest line as progress message
-                       progress_value, 
-                       gr.update(interactive=False), 
+                       progress_value,
+                       gr.update(interactive=False),
                        gr.update(interactive=True),
                        gr.update(interactive=False),
                        str(iterations_completed))
         except Exception as e:
             logging.error(f"Error during indexing: {str(e)}")
-            return ("\n".join(output + [f"Error: {str(e)}"]), 
-                    "Error occurred during indexing.", 
-                    100, 
-                    gr.update(interactive=True), 
+            return ("\n".join(output + [f"Error: {str(e)}"]),
+                    "Error occurred during indexing.",
+                    100,
+                    gr.update(interactive=True),
                     gr.update(interactive=False),
                     gr.update(interactive=True),
                     str(iterations_completed))
-    
+
     if process.returncode != 0 and not stop_indexing.is_set():
         final_output = "\n".join(output + [f"Error: Process exited with return code {process.returncode}"])
         final_progress = "Indexing failed. Check output for details."
     else:
         final_output = "\n".join(output)
         final_progress = "Indexing completed successfully!"
-    
-    return (final_output, 
-            final_progress, 
-            100, 
-            gr.update(interactive=True), 
+
+    return (final_output,
+            final_progress,
+            100,
+            gr.update(interactive=True),
             gr.update(interactive=False),
             gr.update(interactive=True),
             str(iterations_completed))
@@ -1344,14 +1345,14 @@ def create_gradio_interface():
     global global_vector_store_wrapper
     llm_models, embeddings_models, llm_service_type, embeddings_service_type, llm_api_base, embeddings_api_base, text_embedder = initialize_models()
     settings = load_settings()
-    
+
     global_vector_store_wrapper = create_vector_store_wrapper(text_embedder)
 
     log_output = gr.TextArea(label="Logs", elem_id="log-output", interactive=False, visible=False)
 
     with gr.Blocks(css=custom_css, theme=gr.themes.Base()) as demo:
         gr.Markdown("# GraphRAG Local UI", elem_id="title")
-        
+
         with gr.Row(elem_id="main-container"):
             with gr.Column(scale=1, elem_id="left-column"):
                 with gr.Tabs():
@@ -1360,17 +1361,17 @@ def create_gradio_interface():
                             file_upload = gr.File(label="上传 .txt 文件", file_types=[".txt"])
                             upload_btn = gr.Button("上传文件", variant="primary")
                             upload_output = gr.Textbox(label="上传状态", visible=False)
-                        
+
                         with gr.Accordion("文件管理", open=True):
                             file_list = gr.Dropdown(label="选择文件", choices=[], interactive=True)
                             refresh_btn = gr.Button("刷新文件列表", variant="secondary")
-                            
+
                             file_content = gr.TextArea(label="文件内容", lines=10)
-                            
+
                             with gr.Row():
                                 delete_btn = gr.Button("删除所选文件", variant="stop")
                                 save_btn = gr.Button("保存更改", variant="primary")
-                            
+
                             operation_status = gr.Textbox(label="操作状态", visible=False)
 
 
@@ -1389,7 +1390,7 @@ def create_gradio_interface():
                             run_index_button = gr.Button("开始索引")
                             stop_index_button = gr.Button("停止索引", variant="stop")
                             refresh_index_button = gr.Button("刷新索引", variant="secondary")
-                        
+
                         index_output = gr.Textbox(label="索引输出", lines=20, max_lines=30)
                         index_progress = gr.Textbox(label="索引进度", lines=3)
                         iterations_completed = gr.Textbox(label="已完成的迭代次数", value="0")
@@ -1435,13 +1436,13 @@ def create_gradio_interface():
                         )
 
                         llm_model_dropdown = gr.Dropdown(
-                            label="LLM 模型", 
+                            label="LLM 模型",
                             choices=[],  # 从一个空列表开始
                             value=settings['llm'].get('model'),
                             allow_custom_value=True
                         )
                         refresh_llm_models_btn = gr.Button("刷新 LLM 模型", variant="secondary")
-                        
+
                         embeddings_base_url = gr.Textbox(label="嵌入 API 基础 URL", value=os.getenv("EMBEDDINGS_API_BASE"))
                         embeddings_api_key = gr.Textbox(label="嵌入 API 密钥", value=os.getenv("EMBEDDINGS_API_KEY"), type="password")
                         embeddings_service_type = gr.Radio(
@@ -1516,7 +1517,7 @@ def create_gradio_interface():
                                 system_message,
                                 temperature,
                                 max_tokens,
-                                llm_base_url, 
+                                llm_base_url,
                                 llm_api_key,
                                 embeddings_base_url,
                                 embeddings_api_key,
@@ -1551,7 +1552,7 @@ def create_gradio_interface():
                             for key, value in settings.items():
                                 if key != 'llm':
                                     create_setting_component(key, value)
-                
+
                 with gr.Group(elem_id="log-container"):
                     gr.Markdown("### 日志")
                     log_output = gr.TextArea(label="日志", elem_id="log-output", interactive=False)
@@ -1568,7 +1569,7 @@ def create_gradio_interface():
                             )
                             query_btn = gr.Button("发送查询", variant="primary")
                             clear_chatbot_btn = gr.Button("清空对话", variant="stop")
-                        
+
                     with gr.Accordion("查询参数", open=True):
                         query_type = gr.Radio(
                             ["global", "local", "direct"],
@@ -1605,7 +1606,7 @@ def create_gradio_interface():
                             interactive=True
                         )
                         refresh_selected_folder_btn = gr.Button("刷新输出文件夹", variant="secondary")
-                        
+
                         with gr.Group(visible=False) as custom_options:
                             community_level = gr.Slider(
                                 label="社区级别",
@@ -1642,14 +1643,14 @@ def create_gradio_interface():
 
                     preset_dropdown.change(fn=update_custom_options, inputs=[preset_dropdown], outputs=[custom_options])
 
-                
-                    
+
+
 
                     with gr.Group(elem_id="visualization-container"):
                         vis_output = gr.Plot(label="图形可视化", elem_id="visualization-plot")
                         with gr.Row(elem_id="vis-controls-row"):
                             vis_btn = gr.Button("可视化图形", variant="secondary")
-                        
+
                         # 添加新控件以进行自定义
                         with gr.Accordion("可视化设置", open=False):
                             layout_type = gr.Dropdown(["3D Spring", "2D Spring", "Circular"], label="布局类型", value="3D Spring")
@@ -1660,7 +1661,7 @@ def create_gradio_interface():
                             show_labels = gr.Checkbox(label="显示节点标签", value=True)
                             label_size = gr.Slider(5, 20, 10, label="标签大小", step=1)
 
-                        
+
 
         # Event handlers
         upload_btn.click(fn=upload_file, inputs=[file_upload], outputs=[upload_output, file_list, log_output])
@@ -1784,7 +1785,7 @@ def create_gradio_interface():
             fn=update_logs,
             outputs=[log_output]
         )
-        
+
         # Add this JavaScript to enable Shift+Enter functionality
         demo.load(js="""
         function addShiftEnterListener() {

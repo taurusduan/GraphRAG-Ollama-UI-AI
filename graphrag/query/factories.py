@@ -35,7 +35,7 @@ from graphrag.query.embedding_wrapper import EmbeddingWrapper
 def get_llm(config: GraphRagConfig) -> ChatOpenAI:
     """Get the LLM client."""
     print(f"creating llm client with model: {config.llm.model}")  # noqa T201
-    
+
     return ChatOpenAI(
         model=config.llm.model,
         api_base=config.llm.api_base,
@@ -46,19 +46,19 @@ def get_llm(config: GraphRagConfig) -> ChatOpenAI:
 def get_text_embedder(config: GraphRagConfig) -> EmbeddingWrapper:
     """Get the LLM client for embeddings."""
     llm_config = config.embeddings.llm
-    
+
     print(f"creating embedding llm client with model: {llm_config.model}")  # noqa T201
 
     embedder = OpenAIEmbeddingsLLM(
         client=None,
         configuration={
             "model": llm_config.model,
-            "api_base": config.llm.api_base if hasattr(config.llm, 'api_base') else None,
-            "api_key": config.llm.api_key if hasattr(config.llm, 'api_key') else "dummy_key",
+            "api_base": llm_config.api_base if hasattr(llm_config, 'api_base') else None,
+            "api_key": llm_config.api_key if hasattr(llm_config, 'api_key') else "dummy_key",
             "max_retries": llm_config.max_retries,
         }
     )
-    
+
     return EmbeddingWrapper(embedder)
 
 
