@@ -52,7 +52,7 @@ future==1.0.0
 gensim==4.3.2
 gradio==4.38.1
 gradio_client==1.1.0
-graphrag==0.1.1
+#graphrag==0.1.1
 graspologic==3.4.1
 graspologic-native==1.2.1
 h11==0.14.0
@@ -172,6 +172,8 @@ scikit-learn
 seaborn
 spacy
 transformers
+# API情况下需要单独安装
+# graphrag==0.1.1
 
 # cu121
 torch
