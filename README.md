@@ -2,7 +2,7 @@
 
 视频教程：[https://www.bilibili.com/video/BV1sW42197hT/](https://www.bilibili.com/video/BV1sW42197hT/)  
 
-win整合包：[夸克网盘](https://pan.quark.cn/s/936dcae8aba0#/list/share/56a79e143a8b4877a98a61854e07b229-AI%20Vtuber/a45ffa878e304910a1bfe15c67932807-%E5%85%B6%E4%BB%96%E5%8C%85/c252f86f288540d190ad044ef688ee14-GraphRAG*101Ollama*101UI), [迅雷网盘](https://pan.xunlei.com/s/VNitDF0Y3l-qwTpE0A5Rh4DaA1?path=%2F%E5%88%86%E4%BA%AB%2F%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%2FGraphRAG-Ollama-UI)  
+win整合包：[夸克网盘](https://pan.quark.cn/s/936dcae8aba0#/list/share/56a79e143a8b4877a98a61854e07b229-AI%20Vtuber/a45ffa878e304910a1bfe15c67932807-%E5%85%B6%E4%BB%96%E5%8C%85/c252f86f288540d190ad044ef688ee14-GraphRAG*101Ollama*101UI), [迅雷网盘](https://pan.xunlei.com/s/VNitDF0Y3l-qwTpE0A5Rh4DaA1?path=%2F%E5%88%86%E4%BA%AB%2F%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%2FGraphRAG-Ollama-UI) , [123盘](https://www.123pan.com/s/O02bVv-Fr6Wd)  
 
 ## 部署&使用
 
